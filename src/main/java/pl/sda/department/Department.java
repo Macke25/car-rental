@@ -24,8 +24,8 @@ public class Department implements Serializable {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "car_id", nullable = false)
-    private int car_id;
+    @Column(name = "worker", nullable = false)
+    private String worker_id;
 //    @OneToMany(mappedBy="department")
 //    private List<Worker> worker;
 
