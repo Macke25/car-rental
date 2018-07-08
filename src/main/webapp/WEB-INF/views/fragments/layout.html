@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
 </head>
@@ -23,6 +23,12 @@
                 </li>
                 <li th:classappend="${module == 'car' ? 'active' : ''}">
                     <a href="#car" th:href="@{/car}">Car</a>
+                </li>
+                <li th:classappend="${module == 'department' ? 'active' : ''}">
+                    <a href="#department" th:href="@{/department}">Department</a>
+                </li>
+                <li th:classappend="${module == 'worker' ? 'active' : ''}">
+                    <a href="#worker" th:href="@{/worker}">Worker</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${module == 'adminPanel' ? 'active' : ''}">
                     <a href="#adminPanel" th:href="@{/adminPanel}">Admin Panel</a>

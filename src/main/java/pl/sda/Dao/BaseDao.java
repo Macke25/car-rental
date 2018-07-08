@@ -46,7 +46,7 @@ public abstract class BaseDao<T extends Serializable> {
     }
 
     @SuppressWarnings("unchecked")
-    public T getById(Long o) {
+    public T getById(int o) {
         return (T) getHibernateSession().get(clazz, o);
 
     }
