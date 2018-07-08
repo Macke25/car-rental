@@ -24,6 +24,9 @@
                 <li th:classappend="${module == 'about' ? 'active' : ''}">
                     <a href="#about" th:href="@{/about}">About</a>
                 </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')" th:classappend="${module == 'adminPanel' ? 'active' : ''}">
+                    <a href="#adminPanel" th:href="@{/adminPanel}">Admin Panel</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li th:if="${#authorization.expression('!isAuthenticated()')}">
