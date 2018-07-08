@@ -10,11 +10,34 @@
 </head>
 <body>
 <div th:replace="fragments/layout :: header"></div>
+
 <div class="container">
-    <p class="lead text-center">
-        About
-    </p>
+
+    <div class="starter-template">
+        <table class="table table-bordered">
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Brand</td>
+                <td>Model</td>
+                <td>Body</td>
+                <td>Year</td>
+                <td>Status</td>
+            </tr>
+            <tr th:each="car : ${car}">
+                <td th:text="${car.id}"></td>
+                <td th:text="${car.name}"></td>
+                <td th:text="${car.brand}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="${car.body}"></td>
+                <td th:text="${car.year}"></td>
+                <td th:text="${car.status}"></td>
+            </tr>
+        </table>
+    </div>
+
 </div>
+
 <div th:replace="fragments/layout :: footer"></div>
 </body>
 </html>
