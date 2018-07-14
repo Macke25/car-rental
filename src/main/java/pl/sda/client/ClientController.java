@@ -1,0 +1,7 @@
+package pl.sda.client;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ClientController {
+}
