@@ -76,9 +76,18 @@ public abstract class BaseDao<T extends Serializable> {
 
     }
 
-    public void delete(T t) {
-        getHibernateSession().delete(t);
-
+    public void delete(int i) {
+        try
+        {
+            Object object = (T) getHibernateSession().get(clazz, i);
+            getHibernateSession().delete(object);
+        }
+        catch (RuntimeException runtimeException)
+        {
+            System.err.println("***NagiosHostDao::deleteObject, RuntimeException occurred, message follows.");
+            System.err.println(runtimeException);
+            throw runtimeException;
+        }
     }
 
 

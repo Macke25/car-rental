@@ -3,8 +3,9 @@
 <head>
     <title th:text="#{view.index.title}">Welcome!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
     <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
     <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
@@ -32,9 +33,113 @@
                 <td th:text="${car.body}"></td>
                 <td th:text="${car.year}"></td>
                 <td th:text="${car.status}"></td>
+
+
+                <td sec:authorize="hasRole('ROLE_ADMIN')"|>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary"
+                            href="#my_modal" data-toggle="modal" data-car-id="my_id_value" data-target="#exampleModalCenter">Update (modal)</button>
+
+                    <!--<a href="#my_modal" data-toggle="modal" data-book-id="my_id_value">Open Modal</a>-->
+                </td>
+
+                <script>
+                    //triggered when modal is about to be shown
+                    $('#my_modal').on('show.bs.modal', function(e) {
+
+                        //get data-id attribute of the clicked element
+                        var carId = $(e.relatedTarget).data('car-id');
+
+                        var name = $(e.relatedTarget).data('name');
+                        var brand = $(e.relatedTarget).data('brand');
+                        var body = $(e.relatedTarget).data('body');
+
+                        //populate the textbox
+                        $(e.currentTarget).find('input[name="carId"]').val(carId);
+
+                        $(e.currentTarget).find('input[name="name"]').val(name);
+                        $(e.currentTarget).find('input[name="brand"]').val(brand);
+                        $(e.currentTarget).find('input[name="body"]').val(body);
+                    });
+                </script>
+
+
+
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
+                    <form action="#" th:action="@{/carDel}" th:object="${car.id}" th:method="delete">
+
+                        <button type="submit" class="btn btn-default" th:object="${car.id}" th:value="${car.id}" th:name="id" th:id="${car.id}">Remove</button>
+                    </form>
+                </td>
+
+
             </tr>
         </table>
+
+
+        <div sec:authorize="hasRole('ROLE_ADMIN')">Text visible to admin.</div>
     </div>
+
+
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="#" th:action="@{/carPut}" th:object="${car}" method="Update">
+
+                        Id:<br>
+                        <input type="text" name="carId" id="carId" value="">
+                        <br>
+                        Name:<br>
+                        <input type="text" name="name" value="">
+                        <br>
+                        Brand:<br>
+                        <input type="text" name="brand" value="">
+                        <br>
+                        Body:<br>
+                        <input type="text" name="body" value="asd">
+                        <br>
+                        Model:<br>
+                        <input type="text" name="model" value="">
+                        <br>
+                        Status:<br>
+                        <input type="text" name="status" value="">
+                        <br>
+                        Year:<br>
+                        <input type="text" name="year" value="">
+                        <br>
+                        <br><br>
+                        <input type="submit" value="Submit">
+
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </div>
 

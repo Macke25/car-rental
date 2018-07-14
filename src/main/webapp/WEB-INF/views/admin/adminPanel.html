@@ -3,18 +3,107 @@
 <head>
     <title th:text="#{view.index.title}">Admin Panel!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
     <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
     <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div th:replace="fragments/layout :: header"></div>
 <div class="container">
+
     <p class="lead text-center">
         Admin Panel
     </p>
+
+    <br><br><br>
+
+
+    Add car:
+    <br><br>
+
+    <form action="#" th:action="@{/car}" th:object="${car}" method="post">
+
+        Name:<br>
+        <input type="text" name="name" value="">
+        <br>
+        Brand:<br>
+        <input type="text" name="brand" value="">
+        <br>
+        Body:<br>
+        <input type="text" name="body" value="">
+        <br>
+        Model:<br>
+        <input type="text" name="model" value="">
+        <br>
+        Status:<br>
+        <input type="text" name="status" value="">
+        <br>
+        Year:<br>
+        <input type="text" name="year" value="">
+        <br>
+        <br><br>
+        <input type="submit" value="Submit">
+
+    </form>
+
+
+    <br><br>
+    Get car by id:
+    <br><br>
+
+    <form action="#" th:action="@{carId}" th:object="${car}" method="get">
+
+        Id:<br>
+        <input type="number" name="id" th:value="id">
+        <br><br>
+        <input type="submit" value="Submit">
+
+    </form>
+
+
+    <br><br>
+    Delete car by id:
+    <br><br>
+
+    <form action="#" th:action="@{carDel}" th:object="${car}" th:method="delete">
+
+        Id:<br>
+        <input type="number" name="id" th:value="id">
+        <br><br>
+        <input type="submit" value="Submit">
+
+    </form>
+
+
+    <br><br>
+    Update
+    <br><br>
+
+    <form action="#" th:action="@{carPut}" th:object="${car}" th:method="update">
+
+        Id:<br>
+        <input type="number" name="id" th:value="id">
+
+        Name:<br><input type="text" name="name" value="">
+        <br>Brand:<br><input type="text" name="brand" value="">
+        <br>Body:<br><input type="text" name="body" value="">
+        <br>Model:<br><input type="text" name="model" value="">
+        <br>Status:<br><input type="text" name="status" value="">
+        <br>Year:<br><input type="text" name="year" value="">
+        <br><br><br>
+        <input type="submit" value="Submit">
+
+    </form>
+
+
+    </p>
+
+
 </div>
+
+
+<div th:replace="fragments/layout :: header"></div>
 <div th:replace="fragments/layout :: footer"></div>
 </body>
 </html>
